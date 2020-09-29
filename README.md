@@ -12,7 +12,7 @@ Flow-based generative models have become an important class of unsupervised lear
 ### High level factors
 
 #### Emotion factor
-![motion](gifs/smile.gif)
+![motion](gifs/smile_video.gif)
 
 ### Mid level factors
 
