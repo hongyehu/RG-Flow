@@ -9,12 +9,23 @@ Flow-based generative models have become an important class of unsupervised lear
 
 ## Learned factors
 
-### High level factors
+* High level factors
 
-#### Emotion factor
+**Emotion factor**
+
 ![motion](gifs/smile_video.gif)
 
-### Mid level factors
+**Gender factor**
+
+![motion](gifs/gender_video.gif)
+
+**Light projection factor**
+
+![motion](gifs/projection_video.gif)
+
+* Mid level factors
+
+* Low level factors
 
 ## Face-mixing in hyperbolic space
 
