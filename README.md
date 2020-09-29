@@ -5,7 +5,7 @@ Flow-based generative models have become an important class of unsupervised lear
 
 ## RG-Flow structure
 
-## Learned eceptive fields
+## Learned receptive fields
 
 ## Learned factors
 
