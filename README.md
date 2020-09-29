@@ -23,6 +23,10 @@ Flow-based generative models have become an important class of unsupervised lear
 
 ![motion](gifs/projection_video.gif)
 
+**Azimuth factor**
+
+![motion](gifs/rotation_video.gif)
+
 * Mid level factors
 
 * Low level factors
