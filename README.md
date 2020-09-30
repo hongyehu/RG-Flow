@@ -10,13 +10,13 @@ Flow-based generative models have become an important class of unsupervised lear
 <!--- ![Image of RG-Flow structure](figs/structure.png)--->
 
 ## Random walk in high level latent representations
+
+
+
+## Random walk in mid level latent representations
 <p align="center">
   <img src="gifs/mid_level_walk.gif" width="700">
 </p>
-<!--- ![motion](gifs/mid_level_walk.gif) --->
-
-## Random walk in mid level latent representations
-
 
 ## Learned receptive fields
 <p align="center">
