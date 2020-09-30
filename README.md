@@ -4,11 +4,16 @@ Flow-based generative models have become an important class of unsupervised lear
 <!--- ## Flow-based generative models --->
 
 ## RG-Flow structure
-
-![Image of RG-Flow structure](figs/structure.png)
+<p align="center">
+  <img src="figs/structure.png" width="900">
+</p>
+<!--- ![Image of RG-Flow structure](figs/structure.png)--->
 
 ## Random walk in high level latent representations
-![motion](gifs/mid_level_walk.gif)
+<p align="center">
+  <img src="gifs/mid_level_walk.gif" width="700">
+</p>
+<!--- ![motion](gifs/mid_level_walk.gif) --->
 
 ## Random walk in mid level latent representations
 
@@ -45,7 +50,10 @@ Flow-based generative models have become an important class of unsupervised lear
 <!--- * Low level factors--->
 
 ## Face-mixing in the scaling direction
-![Factors](figs/mix.png)
+<!---![Factors](figs/mix.png)--->
+<p align="center">
+  <img src="figs/mix.png" width="800">
+</p>
 
 
 
