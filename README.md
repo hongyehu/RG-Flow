@@ -5,10 +5,14 @@ Flow-based generative models have become an important class of unsupervised lear
 
 ## RG-Flow structure
 
+![Image of RG-Flow structure](figs/structure.png)
+
 
 ## Learned receptive fields
+![Receptive fields](figs/RF.png)
 
 ## Learned factors
+![Factors](figs/factors.png)
 
 <!--- * High level factors --->
 
@@ -33,5 +37,7 @@ Flow-based generative models have become an important class of unsupervised lear
 <!--- * Low level factors--->
 
 ## Face-mixing in the scaling direction
+![Factors](figs/mix.png)
 
-## Inpainting and error correction
+
+
