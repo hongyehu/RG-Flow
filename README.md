@@ -10,6 +10,62 @@ The code requires `Python >= 3.7` and `PyTorch >= 1.6`, with optional CUDA suppo
 
 `pip install -r requirements.txt`
 
+
+
+# Gallery
+
+## RG-Flow structure
+
+<p align="center">
+  <img src="docs/structure.png" width="900">
+</p>
+
+## Random walk in high-level latent representations
+
+<p align="center">
+  <img src="docs/high_level_walk.gif" width="700">
+</p>
+
+## Random walk in mid-level latent representations
+
+<p align="center">
+  <img src="docs/mid_level_walk.gif" width="700">
+</p>
+
+## Learned receptive fields
+
+<p align="center">
+  <img src="docs/RF.png" width="500">
+</p>
+
+## Learned factors
+
+![Learned factors](docs/factors.png)
+
+### High-level factor: emotion
+
+![High-level factor: emotion](docs/smile_video.gif)
+
+### High-level factor: gender
+
+![High-level factor: gender](docs/gender_video.gif)
+
+### High-level factor: light direction
+
+![High-level factor: light direction](docs/projection_video.gif)
+
+### High-level factor: rotation
+
+![High-level factor: rotation](docs/rotation_video.gif)
+
+## Face mixing in the scaling direction
+
+<p align="center">
+  <img src="docs/mix.png" width="800">
+</p>
+
+
+
 # Running experiments
 
 `main.py` is the code for training the network. All adjustable arguments are stored in `args.py`, together with their default values when we were training on the CelebA dataset. They can be displayed via `python main.py --help`:
@@ -81,54 +137,13 @@ During training, the log file and the network weights will be saved in `out_dir`
 
 After the network is trained, `plot_mix_temperature.py` can be used to plot samples using mixed effective temperatures, described in Appendix B of the paper.
 
-# Gallery
+# Citation
 
-## RG-Flow structure
-
-<p align="center">
-  <img src="docs/structure.png" width="900">
-</p>
-
-## Random walk in high-level latent representations
-
-<p align="center">
-  <img src="docs/high_level_walk.gif" width="700">
-</p>
-
-## Random walk in mid-level latent representations
-
-<p align="center">
-  <img src="docs/mid_level_walk.gif" width="700">
-</p>
-
-## Learned receptive fields
-
-<p align="center">
-  <img src="docs/RF.png" width="500">
-</p>
-
-## Learned factors
-
-![Learned factors](docs/factors.png)
-
-### High-level factor: emotion
-
-![High-level factor: emotion](docs/smile_video.gif)
-
-### High-level factor: gender
-
-![High-level factor: gender](docs/gender_video.gif)
-
-### High-level factor: light direction
-
-![High-level factor: light direction](docs/projection_video.gif)
-
-### High-level factor: rotation
-
-![High-level factor: rotation](docs/rotation_video.gif)
-
-## Face mixing in the scaling direction
-
-<p align="center">
-  <img src="docs/mix.png" width="800">
-</p>
+```
+@article{hu2020rg,
+title={RG-Flow: A hierarchical and explainable flow model based on renormalization group and sparse prior},
+author={Hu, Hong-Ye and Wu, Dian and You, Yi-Zhuang and Olshausen, Bruno and Chen, Yubei},
+journal={arXiv preprint arXiv:2010.00029},
+year={2020}
+}
+```
