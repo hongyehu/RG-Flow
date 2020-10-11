@@ -7,19 +7,16 @@ import torch
 parser = argparse.ArgumentParser()
 
 group = parser.add_argument_group('dataset parameters')
-group.add_argument('--data',
-                   type=str,
-                   default='celeba32',
-                   choices=[
-                       'celeba32', 'celeba64', 
-                       'mnist32', 'cifar10', 'chair600'
-                   ],
-                   help='dataset name')
 group.add_argument(
-    '--data_path',
+    '--data',
     type=str,
-    default='../Image_data', # You should put your dataset directory here
-    help='dataset path')
+    default='celeba32',
+    choices=['celeba32', 'celeba64', 'mnist32', 'cifar10', 'chair600'],
+    help='dataset name')
+group.add_argument('--data_path',
+                   type=str,
+                   default='./data',
+                   help='dataset path')
 group.add_argument('--nchannels',
                    type=int,
                    default=3,
@@ -107,12 +104,11 @@ group.add_argument(
     type=str,
     default='',
     help='infix in output filename to distinguish repeated runs')
-group.add_argument(
-    '-o',
-    '--out_dir',
-    type=str,
-    default='./saved_model',
-    help='directory prefix for output, empty for disabled')
+group.add_argument('-o',
+                   '--out_dir',
+                   type=str,
+                   default='./saved_model',
+                   help='directory for output, empty for disabled')
 
 args = parser.parse_args()
 
