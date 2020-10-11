@@ -29,7 +29,7 @@ The code requires `Python >= 3.7` and `PyTorch >= 1.6`, with optional CUDA suppo
 ## Random walk in mid-level latent representations
 
 <p align="center">
-  <img src="docs/mid_level_walk.gif" width="700">
+  <img src="docs/mid_level_walk2.gif" width="700">
 </p>
 
 ## Learned receptive fields
