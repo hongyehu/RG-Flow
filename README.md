@@ -58,6 +58,10 @@ The code requires `Python >= 3.7` and `PyTorch >= 1.6`, with optional CUDA suppo
 
 ![High-level factor: rotation](docs/rotation_video.gif)
 
+### High-level factor: hair color
+
+![High-level factor: hair](docs/hair_video.gif)
+
 ## Face mixing in the scaling direction
 
 <p align="center">
