@@ -17,19 +17,19 @@ The code requires `Python >= 3.7` and `PyTorch >= 1.6`, with optional CUDA suppo
 ## RG-Flow structure
 
 <p align="center">
-  <img src="docs/structure.png" width="900">
+  <img src="docs/structure.png" width="700">
 </p>
 
 ## Random walk in high-level latent representations
 
 <p align="center">
-  <img src="docs/high_level_walk.gif" width="700">
+  <img src="docs/high_level_walk.gif" width="500">
 </p>
 
 ## Random walk in mid-level latent representations
 
 <p align="center">
-  <img src="docs/mid_level_walk2.gif" width="700">
+  <img src="docs/mid_level_walk2.gif" width="500">
 </p>
 
 ## Learned receptive fields
@@ -61,6 +61,10 @@ The code requires `Python >= 3.7` and `PyTorch >= 1.6`, with optional CUDA suppo
 ### High-level factor: hair color
 
 ![High-level factor: hair](docs/hair_video.gif)
+
+### Mid-level factor: eyebrows
+
+![Mid-level factor: eyebrow](docs/eyebrow_video.gif)
 
 ## Face mixing in the scaling direction
 
