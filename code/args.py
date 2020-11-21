@@ -12,103 +12,161 @@ group.add_argument(
     type=str,
     default='celeba32',
     choices=['celeba32', 'celeba64', 'mnist32', 'cifar10', 'chair600'],
-    help='dataset name')
-group.add_argument('--data_path',
-                   type=str,
-                   default='./data',
-                   help='dataset path')
-group.add_argument('--nchannels',
-                   type=int,
-                   default=3,
-                   help='number of channels')
-group.add_argument('--L', type=int, default=32, help='edge length of images')
+    help='dataset name',
+)
+group.add_argument(
+    '--data_path',
+    type=str,
+    default='./data',
+    help='dataset path',
+)
+group.add_argument(
+    '--nchannels',
+    type=int,
+    default=3,
+    help='number of channels',
+)
+group.add_argument(
+    '--L',
+    type=int,
+    default=32,
+    help='edge length of images',
+)
 
 group = parser.add_argument_group('network parameters')
-group.add_argument('--prior',
-                   type=str,
-                   default='laplace',
-                   choices=['gaussian', 'laplace'],
-                   help='prior of latent variables')
-group.add_argument('--subnet',
-                   type=str,
-                   default='rnvp',
-                   choices=['rnvp', 'ar'],
-                   help='type of subnet in an RG block')
-group.add_argument('--kernel_size',
-                   type=int,
-                   default=4,
-                   help='edge length of an RG block')
-group.add_argument('--nlayers',
-                   type=str,
-                   default='8,6,4,2',
-                   help='number of subnet layers in an RG block')
-group.add_argument('--nresblocks',
-                   type=str,
-                   default='4',
-                   help='number of residual blocks in a subnet layer')
-group.add_argument('--nmlp',
-                   type=str,
-                   default='2',
-                   help='number of MLP hidden layers in an residual block')
-group.add_argument('--nhidden',
-                   type=str,
-                   default='512',
-                   help='width of MLP hidden layers')
-group.add_argument('--dtype',
-                   type=str,
-                   default='float32',
-                   choices=['float32', 'float64'],
-                   help='dtype')
+group.add_argument(
+    '--prior',
+    type=str,
+    default='laplace',
+    choices=['gaussian', 'laplace'],
+    help='prior of latent variables',
+)
+group.add_argument(
+    '--subnet',
+    type=str,
+    default='rnvp',
+    choices=['rnvp', 'ar'],
+    help='type of subnet in an RG block',
+)
+group.add_argument(
+    '--kernel_size',
+    type=int,
+    default=4,
+    help='edge length of an RG block',
+)
+group.add_argument(
+    '--nlayers',
+    type=str,
+    default='8,6,4,2',
+    help='number of subnet layers in an RG block',
+)
+group.add_argument(
+    '--nresblocks',
+    type=str,
+    default='4',
+    help='number of residual blocks in a subnet layer',
+)
+group.add_argument(
+    '--nmlp',
+    type=str,
+    default='2',
+    help='number of MLP hidden layers in an residual block',
+)
+group.add_argument(
+    '--nhidden',
+    type=str,
+    default='512',
+    help='width of MLP hidden layers',
+)
+group.add_argument(
+    '--dtype',
+    type=str,
+    default='float32',
+    choices=['float32', 'float64'],
+    help='dtype',
+)
 
 group = parser.add_argument_group('optimizer parameters')
-group.add_argument('--batch_size', type=int, default=64, help='batch size')
-group.add_argument('--lr', type=float, default=1e-3, help='learning rate')
-group.add_argument('--weight_decay',
-                   type=float,
-                   default=5e-5,
-                   help='weight decay')
-group.add_argument('--epoch', type=int, default=500, help='number of epoches')
-group.add_argument('--clip_grad',
-                   type=float,
-                   default=1,
-                   help='global norm to clip gradients, 0 for disabled')
+group.add_argument(
+    '--batch_size',
+    type=int,
+    default=64,
+    help='batch size',
+)
+group.add_argument(
+    '--lr',
+    type=float,
+    default=1e-3,
+    help='learning rate',
+)
+group.add_argument(
+    '--weight_decay',
+    type=float,
+    default=5e-5,
+    help='weight decay',
+)
+group.add_argument(
+    '--epoch',
+    type=int,
+    default=500,
+    help='number of epoches',
+)
+group.add_argument(
+    '--clip_grad',
+    type=float,
+    default=1,
+    help='global norm to clip gradients, 0 for disabled',
+)
 
 group = parser.add_argument_group('system parameters')
-group.add_argument('--no_stdout',
-                   action='store_true',
-                   help='do not print log to stdout, for better performance')
-group.add_argument('--print_step',
-                   type=int,
-                   default=1,
-                   help='number of batches to print log, 0 for disabled')
+group.add_argument(
+    '--no_stdout',
+    action='store_true',
+    help='do not print log to stdout, for better performance',
+)
+group.add_argument(
+    '--print_step',
+    type=int,
+    default=1,
+    help='number of batches to print log, 0 for disabled',
+)
 group.add_argument(
     '--save_epoch',
     type=int,
     default=1,
-    help='number of epochs to save network weights, 0 for disabled')
+    help='number of epochs to save network weights, 0 for disabled',
+)
 group.add_argument(
     '--keep_epoch',
     type=int,
     default=10,
-    help='number of epochs to keep saved network weights, 0 for disabled')
-group.add_argument('--plot_epoch',
-                   type=int,
-                   default=1,
-                   help='number of epochs to plot samples, 0 for disabled')
-group.add_argument('--cuda',
-                   type=str,
-                   default='',
-                   help='IDs of GPUs to use, empty for disabled')
+    help='number of epochs to keep saved network weights, 0 for disabled',
+)
+group.add_argument(
+    '--plot_epoch',
+    type=int,
+    default=1,
+    help='number of epochs to plot samples, 0 for disabled',
+)
+group.add_argument(
+    '--cuda',
+    type=str,
+    default='',
+    help='IDs of GPUs to use, empty for disabled',
+)
 group.add_argument(
     '--out_infix',
     type=str,
     default='',
-    help='infix in output filename to distinguish repeated runs')
-group.add_argument('-o',
-                   '--out_dir',
-                   type=str,
-                   default='./saved_model',
-                   help='directory for output, empty for disabled')
+    help='infix in output filename to distinguish repeated runs',
+)
+group.add_argument(
+    '-o',
+    '--out_dir',
+    type=str,
+    default='./saved_model',
+    help='directory for output, empty for disabled',
+)
 
 args = parser.parse_args()
 

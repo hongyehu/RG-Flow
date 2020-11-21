@@ -29,7 +29,6 @@ def load_dataset():
     Returns:
         a torch dataset and its associated information.
     """
-
     if args.data == 'celeba32':
         data_info = DataInfo(args.data, 3, 32)
         transform = transforms.Compose([
