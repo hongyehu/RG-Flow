@@ -31,65 +31,84 @@ def load_dataset():
     """
     if args.data == 'celeba32':
         data_info = DataInfo(args.data, 3, 32)
+        root = os.path.join(args.data_path, 'celeba')
         transform = transforms.Compose([
             transforms.CenterCrop(148),
             transforms.Resize(32),
             transforms.RandomHorizontalFlip(p=0.5),
             transforms.ToTensor(),
         ])
-        train_set = datasets.ImageFolder(os.path.join(args.data_path,
-                                                      'celeba'),
-                                         transform=transform)
-        [train_split, val_split] = data.random_split(train_set,
-                                                     [180000, 22599])
+        train_set = datasets.CelebA(root,
+                                    split='train',
+                                    transform=transform,
+                                    download=True)
+        test_set = datasets.CelebA(root,
+                                   split='test',
+                                   transform=transform,
+                                   download=True)
 
     elif args.data == 'mnist32':
         data_info = DataInfo(args.data, 1, 32)
+        root = os.path.join(args.data_path, 'mnist')
         transform = transforms.Compose([
             transforms.Pad(2),
             transforms.ToTensor(),
         ])
-        train_set = datasets.MNIST(os.path.join(args.data_path, 'mnist'),
+        train_set = datasets.MNIST(root,
                                    train=True,
-                                   download=True,
-                                   transform=transform)
-        [train_split, val_split] = data.random_split(train_set, [54000, 6000])
+                                   transform=transform,
+                                   download=True)
+        test_set = datasets.MNIST(root,
+                                  train=False,
+                                  transform=transform,
+                                  download=True)
 
     elif args.data == 'cifar10':
         data_info = DataInfo(args.data, 3, 32)
+        root = os.path.join(args.data_path, 'cifar10')
         transform = transforms.ToTensor()
-        train_set = datasets.CIFAR10(os.path.join(args.data_path, 'cifar10'),
+        train_set = datasets.CIFAR10(root,
                                      train=True,
-                                     download=True,
-                                     transform=transform)
-        [train_split, val_split] = data.random_split(train_set, [45000, 5000])
+                                     transform=transform,
+                                     download=True)
+        test_set = datasets.CIFAR10(root,
+                                    train=False,
+                                    transform=transform,
+                                    download=True)
 
     elif args.data == 'chair600':
         data_info = DataInfo(args.data, 3, 32)
+        root = os.path.join(args.data_path, 'chair600')
         transform = transforms.Compose([
             transforms.CenterCrop(300),
             transforms.Resize(32),
             transforms.RandomHorizontalFlip(p=0.5),
             transforms.ToTensor(),
         ])
-        train_set = datasets.ImageFolder(os.path.join(args.data_path,
-                                                      'chair600'),
-                                         transform=transform)
-        [train_split, val_split] = data.random_split(train_set, [78000, 8366])
+        train_set = datasets.ImageFolder(root, transform=transform)
+        train_set, test_set = data.random_split(
+            train_set, [77730, 8636],
+            generator=torch.Generator().manual_seed(0))
 
     elif args.data == 'msds1':
         data_info = DataInfo(args.data, 3, 32)
         transform = transforms.ToTensor()
-        train_set = datasets.ImageFolder(os.path.join(args.data_path, 'msds1'),
+        train_set = datasets.ImageFolder(os.path.join(args.data_path,
+                                                      'msds1/train'),
                                          transform=transform)
-        [train_split, val_split] = data.random_split(train_set, [90000, 10000])
+        test_set = datasets.ImageFolder(os.path.join(args.data_path,
+                                                     'msds1/test'),
+                                        transform=transform)
 
     elif args.data == 'msds2':
         data_info = DataInfo(args.data, 3, 32)
         transform = transforms.ToTensor()
-        train_set = datasets.ImageFolder(os.path.join(args.data_path, 'msds2'),
+        train_set = datasets.ImageFolder(os.path.join(args.data_path,
+                                                      'msds2/train'),
                                          transform=transform)
-        [train_split, val_split] = data.random_split(train_set, [90000, 10000])
+        test_set = datasets.ImageFolder(os.path.join(args.data_path,
+                                                     'msds2/test'),
+                                        transform=transform)
 
     else:
         raise ValueError('Unknown data: {}'.format(args.data))
@@ -97,12 +116,12 @@ def load_dataset():
     assert data_info.channel == args.nchannels
     assert data_info.size == args.L
 
-    return train_split, val_split, data_info
+    return train_set, test_set, data_info
 
 
 def get_data_batch():
-    train_split, _, _ = load_dataset()
-    train_loader = data.DataLoader(train_split,
+    train_set, _, _ = load_dataset()
+    train_loader = data.DataLoader(train_set,
                                    batch_size=args.batch_size,
                                    shuffle=True)
     dataiter = iter(train_loader)

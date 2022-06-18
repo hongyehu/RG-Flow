@@ -29,11 +29,11 @@ def main():
     flow = build_mera()
     utils.load_checkpoint(last_epoch, flow)
 
-    train_split, val_split, data_info = utils.load_dataset()
-    train_loader = torch.utils.data.DataLoader(train_split,
+    train_set, _, _ = utils.load_dataset()
+    train_loader = torch.utils.data.DataLoader(train_set,
                                                args.batch_size,
                                                shuffle=True,
-                                               num_workers=1,
+                                               num_workers=4,
                                                pin_memory=True)
 
     zs = []
