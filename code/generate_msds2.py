@@ -9,7 +9,8 @@ from PIL import Image, ImageDraw
 
 
 def generate(dir_name, num_imgs):
-    os.makedirs(f'./msds2/{dir_name}', exist_ok=True)
+    # `torchvision.datasets.ImageFolder` requires a subfolder
+    os.makedirs(f'./msds2/{dir_name}/0', exist_ok=True)
 
     labels = np.empty((num_imgs, 4, 4, 6), dtype=np.int32)
     for count in range(num_imgs):
@@ -41,7 +42,7 @@ def generate(dir_name, num_imgs):
                 label = now_pos + (now_angle, ) + now_color[:3]
                 labels[count, i, j, :] = label
 
-        img.save(f'./msds2/{dir_name}/{count:05d}.png', compress_level=1)
+        img.save(f'./msds2/{dir_name}/0/{count:05d}.png', compress_level=1)
 
     with h5py.File(f'./msds2/{dir_name}_labels.hdf5', 'w') as f:
         f.create_dataset('labels',
