@@ -175,7 +175,7 @@ if args.dtype == 'float32':
 elif args.dtype == 'float64':
     torch.set_default_tensor_type(torch.DoubleTensor)
 else:
-    raise ValueError('Unknown dtype: {}'.format(args.dtype))
+    raise ValueError(f'Unknown dtype: {args.dtype}')
 
 if args.cuda:
     os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'

@@ -48,7 +48,7 @@ def my_log(s):
 
 def print_args(print_fn=my_log):
     for k, v in args._get_kwargs():
-        print_fn('{} = {}'.format(k, v))
+        print_fn(f'{k} = {v}')
     print_fn('')
 
 
@@ -62,7 +62,7 @@ def parse_checkpoint_name(filename):
 def get_last_checkpoint_step():
     if not (args.out_filename and args.save_epoch):
         return -1
-    filename_list = glob('{}_save/*.state'.format(args.out_filename))
+    filename_list = glob(f'{args.out_filename}_save/*.state')
     if not filename_list:
         return -1
     step = max(parse_checkpoint_name(x) for x in filename_list)
@@ -70,7 +70,7 @@ def get_last_checkpoint_step():
 
 
 def load_checkpoint(epoch, flow, optimizer=None):
-    state = torch.load('{}_save/{}.state'.format(args.out_filename, epoch),
+    state = torch.load(f'{args.out_filename}_save/{epoch}.state',
                        map_location=args.device)
 
     if state.get('flow'):

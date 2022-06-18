@@ -12,4 +12,4 @@ class Swish(nn.Module):
         return x * torch.sigmoid(self.scale * x)
 
     def extra_repr(self):
-        return ('num_features={}'.format(self.num_features))
+        return (f'num_features={self.num_features}')

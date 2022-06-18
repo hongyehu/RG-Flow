@@ -111,7 +111,7 @@ def load_dataset():
                                         transform=transform)
 
     else:
-        raise ValueError('Unknown data: {}'.format(args.data))
+        raise ValueError(f'Unknown data: {args.data}')
 
     assert data_info.channel == args.nchannels
     assert data_info.size == args.L

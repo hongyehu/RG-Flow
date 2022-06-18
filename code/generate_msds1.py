@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
 
+import os
 from random import randint, random
 
+import h5py
+import numpy as np
 from PIL import Image, ImageDraw
 
 
 def generate(dir_name, num_imgs):
+    os.makedirs(f'./msds1/{dir_name}', exist_ok=True)
+
+    labels = np.empty((num_imgs, 4, 4, 6), dtype=np.int32)
     for count in range(num_imgs):
         item_color = (
             randint(0, 191) + 32,
@@ -26,7 +32,9 @@ def generate(dir_name, num_imgs):
                     255,
                 )
                 draw.ellipse((1, 3, 7, 5), now_color)
-                item = item.rotate(random() * 180, resample=Image.BICUBIC)
+                now_angle = random() * 180
+                item = item.rotate(now_angle,
+                                   resample=Image.Resampling.BICUBIC)
 
                 now_pos = (
                     i * 8 + randint(-1, 1),
@@ -34,7 +42,16 @@ def generate(dir_name, num_imgs):
                 )
                 img.paste(item, now_pos, mask=item)
 
-        img.save(f'./msds1/{dir_name}/{count:05d}.png')
+                label = now_pos + (now_angle, ) + now_color[:3]
+                labels[count, i, j, :] = label
+
+        img.save(f'./msds1/{dir_name}/{count:05d}.png', compress_level=1)
+
+    with h5py.File(f'./msds1/{dir_name}_labels.hdf5', 'w') as f:
+        f.create_dataset('labels',
+                         data=labels,
+                         compression='gzip',
+                         shuffle=True)
 
 
 def main():

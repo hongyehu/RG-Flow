@@ -20,4 +20,4 @@ class Scale(nn.Module):
         return self.scale * x
 
     def extra_repr(self):
-        return ('num_features={}'.format(self.num_features))
+        return (f'num_features={self.num_features}')

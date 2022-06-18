@@ -25,7 +25,7 @@ def corrcoef(x):
 
 def main():
     last_epoch = utils.get_last_checkpoint_step()
-    print('Checkpoint found: {}'.format(last_epoch))
+    print(f'Checkpoint found: {last_epoch}')
     flow = build_mera()
     utils.load_checkpoint(last_epoch, flow)
 

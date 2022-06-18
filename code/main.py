@@ -28,7 +28,7 @@ def get_prior(temperature=1):
         prior = sources.Laplace([args.nchannels, args.L, args.L],
                                 scale=temperature / sqrt(2))
     else:
-        raise ValueError('Unknown prior: {}'.format(args.prior))
+        raise ValueError(f'Unknown prior: {args.prior}')
     prior = prior.to(args.device)
     return prior
 
@@ -112,7 +112,7 @@ def build_mera():
                     args.nhidden_list[i],
                 ))
         else:
-            raise ValueError('Unknown subnet: {}'.format(args.subnet))
+            raise ValueError(f'Unknown subnet: {args.subnet}')
 
     flow = layers.MERA(_layers, args.L, args.kernel_size, prior)
     flow = flow.to(args.device)
@@ -137,9 +137,9 @@ def do_plot(flow, epoch_idx):
 
     fig, axes = plot_samples_np(sample)
 
-    fig.suptitle('{}/{}/epoch{}'.format(args.data, args.net_name, epoch_idx))
+    fig.suptitle(f'{args.data}/{args.net_name}/epoch{epoch_idx}')
     my_tight_layout(fig)
-    plot_filename = '{}/epoch{}.pdf'.format(args.plot_filename, epoch_idx)
+    plot_filename = f'{args.plot_filename}/epoch{epoch_idx}.pdf'
     utils.ensure_dir(plot_filename)
     fig.savefig(plot_filename, bbox_inches='tight')
     fig.clf()
@@ -156,7 +156,7 @@ def main():
     if last_epoch >= args.epoch:
         exit()
     if last_epoch >= 0:
-        my_log('\nCheckpoint found: {}\n'.format(last_epoch))
+        my_log(f'\nCheckpoint found: {last_epoch}\n')
     else:
         utils.clear_log()
     utils.print_args()
@@ -165,7 +165,7 @@ def main():
     flow.train(True)
     my_log('nparams in each RG layer: {}'.format(
         [utils.get_nparams(layer) for layer in flow.layers]))
-    my_log('Total nparams: {}'.format(utils.get_nparams(flow)))
+    my_log(f'Total nparams: {utils.get_nparams(flow)}')
 
     # Use multiple GPUs
     if args.cuda and torch.cuda.device_count() > 1:
@@ -187,7 +187,7 @@ def main():
                                                pin_memory=True)
 
     init_time = time.time() - start_time
-    my_log('init_time = {:.3f}'.format(init_time))
+    my_log(f'init_time = {init_time:.3f}')
 
     my_log('Training...')
     start_time = time.time()
@@ -228,8 +228,7 @@ def main():
                 'flow': flow.state_dict(),
                 'optimizer': optimizer.state_dict(),
             }
-            torch.save(state,
-                       '{}_save/{}.state'.format(args.out_filename, epoch_idx))
+            torch.save(state, f'{args.out_filename}_save/{epoch_idx}.state')
 
             if epoch_idx > 0 and (epoch_idx - 1) % args.keep_epoch != 0:
                 os.remove('{}_save/{}.state'.format(args.out_filename,
