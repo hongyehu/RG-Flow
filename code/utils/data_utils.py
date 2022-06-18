@@ -43,20 +43,6 @@ def load_dataset():
         [train_split, val_split] = data.random_split(train_set,
                                                      [180000, 22599])
 
-    elif args.data == 'celeba64':
-        data_info = DataInfo(args.data, 3, 64)
-        transform = transforms.Compose([
-            transforms.CenterCrop(148),
-            transforms.Resize(64),
-            transforms.RandomHorizontalFlip(p=0.5),
-            transforms.ToTensor(),
-        ])
-        train_set = datasets.ImageFolder(os.path.join(args.data_path,
-                                                      'celeba'),
-                                         transform=transform)
-        [train_split, val_split] = data.random_split(train_set,
-                                                     [180000, 22599])
-
     elif args.data == 'mnist32':
         data_info = DataInfo(args.data, 1, 32)
         transform = transforms.Compose([
@@ -90,6 +76,20 @@ def load_dataset():
                                                       'chair600'),
                                          transform=transform)
         [train_split, val_split] = data.random_split(train_set, [78000, 8366])
+
+    elif args.data == 'msds1':
+        data_info = DataInfo(args.data, 3, 32)
+        transform = transforms.ToTensor()
+        train_set = datasets.ImageFolder(os.path.join(args.data_path, 'msds1'),
+                                         transform=transform)
+        [train_split, val_split] = data.random_split(train_set, [90000, 10000])
+
+    elif args.data == 'msds2':
+        data_info = DataInfo(args.data, 3, 32)
+        transform = transforms.ToTensor()
+        train_set = datasets.ImageFolder(os.path.join(args.data_path, 'msds2'),
+                                         transform=transform)
+        [train_split, val_split] = data.random_split(train_set, [90000, 10000])
 
     else:
         raise ValueError('Unknown data: {}'.format(args.data))

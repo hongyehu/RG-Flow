@@ -11,7 +11,7 @@ group.add_argument(
     '--data',
     type=str,
     default='celeba32',
-    choices=['celeba32', 'celeba64', 'mnist32', 'cifar10', 'chair600'],
+    choices=['celeba32', 'mnist32', 'cifar10', 'chair600', 'msds1', 'msds2'],
     help='dataset name',
 )
 group.add_argument(
@@ -102,7 +102,7 @@ group.add_argument(
 group.add_argument(
     '--weight_decay',
     type=float,
-    default=5e-5,
+    default=5e-2,
     help='weight decay',
 )
 group.add_argument(
