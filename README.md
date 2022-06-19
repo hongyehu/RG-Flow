@@ -7,10 +7,9 @@ Flow-based generative models have become an important class of unsupervised lear
 # Dependencies
 
 The code requires `Python >= 3.7` and `PyTorch >= 1.6`, with optional CUDA support. Other dependencies can be installed via
-
-`pip install -r requirements.txt`
-
-
+```sh
+pip install -r requirements.txt
+```
 
 # Gallery
 
@@ -76,14 +75,11 @@ The code requires `Python >= 3.7` and `PyTorch >= 1.6`, with optional CUDA suppo
   <img src="docs/mix.png" width="800">
 </p>
 
-
-
 # Running experiments
 
 `main.py` is the code for training the network. All adjustable arguments are stored in `args.py`, together with their default values when we were training on the CelebA dataset. They can be displayed via `python main.py --help`:
-
 ```
-usage: main.py [-h] [--data {celeba32,celeba64,mnist32,cifar10,chair600}] [--data_path DATA_PATH]
+usage: main.py [-h] [--data {celeba32,mnist32,cifar10,chair600,msds1,msds2}] [--data_path DATA_PATH]
                [--nchannels NCHANNELS] [--L L] [--prior {gaussian,laplace}] [--subnet {rnvp,ar}]
                [--kernel_size KERNEL_SIZE] [--nlayers NLAYERS] [--nresblocks NRESBLOCKS]
                [--nmlp NMLP] [--nhidden NHIDDEN] [--dtype {float32,float64}]
@@ -92,11 +88,11 @@ usage: main.py [-h] [--data {celeba32,celeba64,mnist32,cifar10,chair600}] [--dat
                [--save_epoch SAVE_EPOCH] [--keep_epoch KEEP_EPOCH] [--plot_epoch PLOT_EPOCH]
                [--cuda CUDA] [--out_infix OUT_INFIX] [-o OUT_DIR]
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
 
 dataset parameters:
-  --data {celeba32,celeba64,mnist32,cifar10,chair600}
+  --data {celeba32,mnist32,cifar10,chair600,msds1,msds2}
                         dataset name
   --data_path DATA_PATH
                         dataset path
