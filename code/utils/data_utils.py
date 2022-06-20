@@ -2,6 +2,7 @@ import os
 from math import log
 
 import h5py
+import numpy as np
 import torch
 from PIL import Image
 from torch.nn import functional as F
@@ -30,11 +31,11 @@ class MSDSDataset(datasets.VisionDataset):
         super().__init__(root, *args, **kwargs)
 
         with h5py.File(f'{root}_labels.hdf5', 'r') as f:
-            self.labels = torch.tensor(f['labels'])
+            self.labels = torch.from_numpy(np.asarray(f['labels']))
 
     def __getitem__(self, index):
         # Open path as file to avoid ResourceWarning
-        with open(f'{self.root}/{index:d05}.png', 'rb') as f:
+        with open(f'{self.root}/{index:05}.png', 'rb') as f:
             img = Image.open(f)
         label = self.labels[index]
         return img, label
