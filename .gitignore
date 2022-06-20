@@ -3,4 +3,4 @@
 *.sh
 .DS_Store
 __pycache__
-saved_model/
+saved_model
