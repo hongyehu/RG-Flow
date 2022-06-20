@@ -1,7 +1,9 @@
 import os
 from math import log
 
+import h5py
 import torch
+from PIL import Image
 from torch.nn import functional as F
 from torch.utils import data
 from torchvision import datasets, transforms
@@ -21,6 +23,24 @@ class DataInfo():
         self.name = name
         self.channel = channel
         self.size = size
+
+
+class MSDSDataset(datasets.VisionDataset):
+    def __init__(self, root, *args, **kwargs):
+        super().__init__(root, *args, **kwargs)
+
+        with h5py.File(f'{root}_labels.hdf5', 'r') as f:
+            self.labels = torch.tensor(f['labels'])
+
+    def __getitem__(self, index):
+        # Open path as file to avoid ResourceWarning
+        with open(f'{self.root}/{index:d05}.png', 'rb') as f:
+            img = Image.open(f)
+        label = self.labels[index]
+        return img, label
+
+    def __len__(self) -> int:
+        return self.labels.shape[0]
 
 
 def load_dataset():
@@ -93,22 +113,18 @@ def load_dataset():
     elif args.data == 'msds1':
         data_info = DataInfo(args.data, 3, 32)
         transform = transforms.ToTensor()
-        train_set = datasets.ImageFolder(os.path.join(args.data_path,
-                                                      'msds1/train'),
-                                         transform=transform)
-        test_set = datasets.ImageFolder(os.path.join(args.data_path,
-                                                     'msds1/test'),
-                                        transform=transform)
+        train_set = MSDSDataset(os.path.join(args.data_path, 'msds1/train'),
+                                transform=transform)
+        test_set = MSDSDataset(os.path.join(args.data_path, 'msds1/test'),
+                               transform=transform)
 
     elif args.data == 'msds2':
         data_info = DataInfo(args.data, 3, 32)
         transform = transforms.ToTensor()
-        train_set = datasets.ImageFolder(os.path.join(args.data_path,
-                                                      'msds2/train'),
-                                         transform=transform)
-        test_set = datasets.ImageFolder(os.path.join(args.data_path,
-                                                     'msds2/test'),
-                                        transform=transform)
+        train_set = MSDSDataset(os.path.join(args.data_path, 'msds2/train'),
+                                transform=transform)
+        test_set = MSDSDataset(os.path.join(args.data_path, 'msds2/test'),
+                               transform=transform)
 
     else:
         raise ValueError(f'Unknown data: {args.data}')
