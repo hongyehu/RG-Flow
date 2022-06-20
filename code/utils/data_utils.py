@@ -35,8 +35,9 @@ class MSDSDataset(datasets.VisionDataset):
 
     def __getitem__(self, index):
         # Open path as file to avoid ResourceWarning
-        with open(f'{self.root}/{index:05}.png', 'rb') as f:
-            img = Image.open(f)
+        with open(f'{self.root}/0/{index:05}.png', 'rb') as f:
+            img = Image.open(f).convert('RGB')
+        img = self.transform(img)
         label = self.labels[index]
         return img, label
 
