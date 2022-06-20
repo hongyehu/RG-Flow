@@ -230,9 +230,10 @@ def main():
             }
             torch.save(state, f'{args.out_filename}_save/{epoch_idx}.state')
 
-            if epoch_idx > 0 and (epoch_idx - 1) % args.keep_epoch != 0:
-                os.remove('{}_save/{}.state'.format(args.out_filename,
-                                                    epoch_idx - 1))
+            last_epoch = epoch_idx - args.save_epoch
+            if (last_epoch > 0 and args.keep_epoch
+                    and last_epoch % args.keep_epoch != 0):
+                os.remove(f'{args.out_filename}_save/{last_epoch}.state')
 
         if (args.plot_filename and args.plot_epoch
                 and epoch_idx % args.plot_epoch == 0):
