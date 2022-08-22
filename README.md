@@ -148,10 +148,18 @@ After the network is trained, `plot_mix_temperature.py` can be used to plot samp
 # Citation
 
 ```
-@article{hu2020rg,
-title={RG-Flow: A hierarchical and explainable flow model based on renormalization group and sparse prior},
-author={Hu, Hong-Ye and Wu, Dian and You, Yi-Zhuang and Olshausen, Bruno and Chen, Yubei},
-journal={arXiv preprint arXiv:2010.00029},
-year={2020}
+@article{Hu_2022,
+	doi = {10.1088/2632-2153/ac8393},
+	url = {https://doi.org/10.1088/2632-2153/ac8393},
+	year = 2022,
+	month = {aug},
+	publisher = {{IOP} Publishing},
+	volume = {3},
+	number = {3},
+	pages = {035009},
+	author = {Hong-Ye Hu and Dian Wu and Yi-Zhuang You and Bruno Olshausen and Yubei Chen},
+	title = {{RG}-Flow: a hierarchical and explainable flow model based on renormalization group and sparse prior},
+	journal = {Machine Learning: Science and Technology},
+	abstract = {Flow-based generative models have become an important class of unsupervised learning approaches. In this work, we incorporate the key ideas of renormalization group (RG) and sparse prior distribution to design a hierarchical flow-based generative model, RG-Flow, which can separate information at different scales of images and extract disentangled representations at each scale. We demonstrate our method on synthetic multi-scale image datasets and the CelebA dataset, showing that the disentangled representations enable semantic manipulation and style mixing of the images at different scales. To visualize the latent representations, we introduce receptive fields for flow-based models and show that the receptive fields of RG-Flow are similar to those of convolutional neural networks. In addition, we replace the widely adopted isotropic Gaussian prior distribution by the sparse Laplacian distribution to further enhance the disentanglement of representations. From a theoretical perspective, our proposed method has complexity for inpainting of an image with edge length L, compared to previous generative models with complexity.}
 }
 ```
